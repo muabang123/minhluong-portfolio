@@ -4,63 +4,72 @@ logo: "/images/logo.jpg?raw=true"
 
 description: |
   <style>
-    /* 1. Fix lỗi đè chữ: Ẩn các nút mặc định của theme gây vướng */
-    header p.view, header ul { display: none !important; }
-
-    /* 2. Tạo vùng cuộn linh hoạt cho Sidebar */
-    .portfolio-scroll {
-      max-height: 70vh; /* Giới hạn chiều cao 70% màn hình */
-      overflow-y: auto;
-      overflow-x: hidden;
-      padding-right: 10px;
-      font-size: 0.9em;
-      line-height: 1.5;
+    /* 1. XÓA BỎ TRIỆT ĐỂ DÒNG CHỮ HỆ THỐNG */
+    /* Ẩn phần duy trì dự án và thông tin theme mặc định */
+    header p.view, header ul, header footer, .view { 
+      display: none !important; 
+      visibility: hidden !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
     }
 
-    /* 3. Tùy chỉnh thanh cuộn nhỏ gọn */
-    .portfolio-scroll::-webkit-scrollbar { width: 4px; }
-    .portfolio-scroll::-webkit-scrollbar-thumb { background: #d0d0d0; border-radius: 10px; }
+    /* 2. TẠO VÙNG CUỘN CỐ ĐỊNH */
+    .scroll-container {
+      max-height: 70vh; /* Giới hạn chiều cao 70% màn hình */
+      overflow-y: auto !important; /* Bắt buộc hiện thanh cuộn */
+      overflow-x: hidden;
+      padding-right: 15px;
+      margin-top: 20px;
+    }
+
+    /* Tùy chỉnh thanh cuộn cho thanh thoát */
+    .scroll-container::-webkit-scrollbar { width: 4px; }
+    .scroll-container::-webkit-scrollbar-thumb { background: #bbb; border-radius: 10px; }
     
-    .tech-badge { margin-bottom: 5px; }
+    /* Thu nhỏ chữ để không bị tràn hàng */
+    .scroll-container, .scroll-container p, .scroll-container li {
+      font-size: 14px !important;
+      line-height: 1.5;
+    }
   </style>
 
-  <div class="portfolio-scroll">
+  <div class="scroll-container">
     <p align="center">
-      <b>Software Engineering Student @ Saigon University</b>
+      <b>Software Engineering Student @ SGU</b>
     </p>
 
     <p align="center">
       <img src="https://img.shields.io/badge/Birthday-26/12/2005-orange?style=flat-square">
       <a href="tel:0898992485"><img src="https://img.shields.io/badge/Phone-0898.992.485-green?style=flat-square"></a>
-      <a href="mailto:nguyenminhzz283@gmail.com"><img src="https://img.shields.io/badge/Email-Connect-blue?style=flat-square"></a>
-    </p>
-
-    <p align="center">
-      <a href="https://www.linkedin.com/in/l%C6%B0%C6%A1ng-minh-43ab9837a/"><img src="https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=flat-square&logo=linkedin"></a>
-      <a href="https://github.com/muabang123"><img src="https://img.shields.io/badge/GitHub-Follow-181717?style=flat-square&logo=github"></a>
     </p>
 
     <hr>
 
     <h3>👨‍💻 About Me</h3>
-    <p style="text-align: justify; font-size: 0.85em;">
+    <p style="text-align: justify;">
       Dedicated Software Engineering student at <b>Saigon University</b>. Currently mastering <b>Front-end & Back-end</b> to become a Full-stack Developer.
     </p>
 
     <h3>🎓 Education</h3>
-    <ul style="font-size: 0.85em; list-style-type: none; padding-left: 0;">
+    <ul style="list-style-type: none; padding-left: 0;">
       <li><b>GPA:</b> 3.10 / 4.0</li>
       <li><b>Major:</b> Software Engineering</li>
     </ul>
 
+    <h3>🚀 Projects</h3>
+    <p>
+      <b>Bus Tracking System</b><br>
+      <i>React, Node.js, MySQL</i>
+    </p>
+
     <h3>🛠 Tech Stack</h3>
-    <div class="tech-badge">
-      <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" height="20"/>
-      <img src="https://img.shields.io/badge/SQL-CC2927?style=for-the-badge&logo=postgresql&logoColor=white" height="20"/>
-      <img src="https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" height="20"/>
-      <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android-studio&logoColor=white" height="20"/>
+    <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+      <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" height="20"/>
+      <img src="https://img.shields.io/badge/SQL-CC2927?style=flat-square&logo=postgresql&logoColor=white" height="20"/>
+      <img src="https://img.shields.io/badge/VS_Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white" height="20"/>
     </div>
 
     <hr>
-    <p align="center" style="font-size: 0.8em;"><i>"Passionate about creating impact through code."</i></p>
+    <p align="center" style="font-size: 12px !important;"><i>"Passionate about creating impact through code."</i></p>
   </div>

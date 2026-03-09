@@ -12,7 +12,7 @@
     min-height: 100vh;
     margin: 0;
     font-family: sans-serif;
-    background: transparent;
+    background: #f6f8fa;
     padding: 20px;
   }
 
@@ -271,7 +271,6 @@
 </style>
 </head>
 <body>
-<iframe src="background.html" style="position:fixed;inset:0;width:100%;height:100%;border:none;z-index:-1;pointer-events:none;"></iframe>
 <div id="cursor-dot"></div>
 <div id="cursor-outline"></div>
 

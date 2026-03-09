@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<iframe src="background.html" style="position:fixed;inset:0;width:100%;height:100%;border:none;z-index:-1;pointer-events:none;"></iframe>
 <title>Portfolio</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&display=swap');
@@ -272,7 +271,7 @@
 </style>
 </head>
 <body>
-
+<iframe src="background.html" style="position:fixed;inset:0;width:100%;height:100%;border:none;z-index:-1;pointer-events:none;"></iframe>
 <div id="cursor-dot"></div>
 <div id="cursor-outline"></div>
 

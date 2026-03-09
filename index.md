@@ -1,6 +1,6 @@
 <style>
-  /* CSS để làm đẹp các Project Cards */
-  .project-card {
+  /* CSS cho Project Cards và About Section */
+  .content-card {
     border: 1px solid #e1e4e8;
     border-radius: 8px;
     padding: 20px;
@@ -8,7 +8,7 @@
     transition: transform 0.2s, box-shadow 0.2s;
     background-color: #ffffff;
   }
-  .project-card:hover {
+  .content-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
   }
@@ -16,12 +16,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  .tech-stack {
-    margin-top: 10px;
-    display: flex;
-    gap: 5px;
-    flex-wrap: wrap;
   }
   .project-link {
     display: flex;
@@ -31,15 +25,49 @@
     font-weight: bold;
     color: #0366d6;
   }
+  .skill-badge {
+    margin: 2px;
+  }
 </style>
 
-# 🚀 Featured Projects
-
-Welcome to my project portfolio! Here are some of the key software systems I have developed:
+# 👋 Welcome to My Portfolio
 
 ---
 
-<div class="project-card">
+<div class="content-card">
+  <h2>👨‍💻 About Me</h2>
+  <p>
+    I am a dedicated <b>Software Engineering</b> student at <b>Saigon University (SGU)</b> with a strong passion for building scalable and efficient applications. 
+    Currently, I am focusing on mastering both <b>Front-end</b> and <b>Back-end</b> development to become a versatile Full-stack Developer.
+  </p>
+  <p>
+    Beyond web development, I have a keen interest in <b>Game Development</b>, specifically working with <b>Unreal Engine 5</b>.
+  </p>
+
+  <h3>🎓 Education & Details</h3>
+  <ul>
+    <li><b>University:</b> Saigon University (SGU)</li>
+    <li><b>Major:</b> Software Engineering</li>
+    <li><b>GPA:</b> <b>3.10 / 4.0</b></li>
+    <li><b>Birthday:</b> December 26, 2005</li>
+  </ul>
+
+  <h3>🛠 Core Technical Skills</h3>
+  <div class="tech-stack">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" class="skill-badge" />
+    <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" class="skill-badge" />
+    <img src="https://img.shields.io/badge/SQL-CC2927?style=flat-square&logo=postgresql&logoColor=white" class="skill-badge" />
+    <img src="https://img.shields.io/badge/VS_Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white" class="skill-badge" />
+    <img src="https://img.shields.io/badge/Android_Studio-3DDC84?style=flat-square&logo=android-studio&logoColor=white" class="skill-badge" />
+    <img src="https://img.shields.io/badge/Unreal_Engine_5-0E1128?style=flat-square&logo=unrealengine&logoColor=white" class="skill-badge" />
+  </div>
+</div>
+
+---
+
+# 🚀 Featured Projects
+
+<div class="content-card">
   <div class="project-header">
     <h3>🚌 Smart School Bus Tracking System</h3>
     <a href="https://github.com/muabang123/Smart-School-Bus-Tracking-System---SSB" class="project-link">
@@ -53,7 +81,7 @@ Welcome to my project portfolio! Here are some of the key software systems I hav
   </ul>
 </div>
 
-<div class="project-card">
+<div class="content-card">
   <div class="project-header">
     <h3>✈️ Airline Ticket Management System</h3>
     <a href="https://github.com/muabang123/Plane_Ticket" class="project-link">
@@ -67,7 +95,7 @@ Welcome to my project portfolio! Here are some of the key software systems I hav
   </ul>
 </div>
 
-<div class="project-card">
+<div class="content-card">
   <div class="project-header">
     <h3>📺 YouTube Lite</h3>
     <a href="https://github.com/muabang123/Youtube_Web" class="project-link">

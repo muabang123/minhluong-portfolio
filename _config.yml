@@ -4,41 +4,41 @@ logo: "/images/logo.jpg?raw=true"
 
 description: |
   <style>
-  /* 1. Ẩn các nút mặc định của theme */
-  header p.view, header ul { display: none !important; }
+    /* 1. Ẩn các nút mặc định của theme */
+    header p.view, header ul { display: none !important; }
 
-  /* 2. Bo tròn Logo và chỉnh kích thước */
-  header img {
-    border-radius: 50%; /* Làm bo tròn 100% */
-    width: 120px;       /* Bạn có thể tùy chỉnh độ lớn nhỏ ở đây */
-    height: 120px;
-    object-fit: cover;  /* Đảm bảo ảnh không bị méo */
-    margin-bottom: 15px;
-  }
+    /* 2. Bo tròn Logo và chỉnh kích thước */
+    header img {
+      border-radius: 50% !important;
+      width: 120px !important;
+      height: 120px !important;
+      object-fit: cover !important;
+      margin-bottom: 15px !important;
+    }
 
-  /* 3. Chỉnh tên (h1) cho nhỏ lại và nằm trên 1 hàng */
-  header h1 {
-    font-size: 1.5em !important; /* Giảm kích thước chữ */
-    white-space: nowrap;        /* Ép chữ không được xuống hàng */
-    overflow: hidden;
-    text-overflow: ellipsis;    /* Nếu quá dài sẽ có dấu ... thay vì tràn */
-    margin-top: 10px !important;
-  }
+    /* 3. Chỉnh tên (h1) nhỏ lại để nằm trên 1 hàng */
+    header h1 {
+      font-size: 1.4em !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      margin-top: 10px !important;
+    }
 
-  /* 4. Vùng cuộn cho Sidebar */
-  .portfolio-scroll {
-    max-height: 65vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-right: 10px;
-    font-size: 0.9em;
-    line-height: 1.5;
-  }
+    /* 4. Vùng cuộn cho Sidebar */
+    .portfolio-scroll {
+      max-height: 65vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 10px;
+      font-size: 0.9em;
+      line-height: 1.5;
+    }
 
-  /* Thanh cuộn nhỏ gọn */
-  .portfolio-scroll::-webkit-scrollbar { width: 4px; }
-  .portfolio-scroll::-webkit-scrollbar-thumb { background: #d0d0d0; border-radius: 10px; }
-</style>
+    /* Thanh cuộn nhỏ gọn */
+    .portfolio-scroll::-webkit-scrollbar { width: 4px; }
+    .portfolio-scroll::-webkit-scrollbar-thumb { background: #d0d0d0; border-radius: 10px; }
+  </style>
 
   <div class="portfolio-scroll">
     <p align="center">
@@ -58,6 +58,5 @@ description: |
         <img src="https://img.shields.io/badge/Resume-PDF-red?style=flat-square&logo=googledrive&logoColor=white">
       </a>
     </p>
-
     <hr>
   </div>

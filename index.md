@@ -438,7 +438,7 @@
       <div class="pill-grid">
         <span class="pill p-docker"><span class="pill-emoji">🐳</span> Docker</span>
         <span class="pill p-git"><span class="pill-emoji">🔶</span> Git</span>
-        <span class="pill p-postman"><span class="pill-emoji">📮</span> Postman</span>
+        <span class="pill p-postman"><span class="pill-emoji">📮</span> Cisco PacketTracer</span>
         <span class="pill p-ghactions"><span class="pill-emoji">🦄</span> GitHub Actions</span>
         <span class="pill p-kafka"><span class="pill-emoji">⚡</span> Apache Kafka</span>
       </div>

@@ -394,9 +394,9 @@
       <div class="pill-grid">
         <span class="pill p-java"><span class="pill-emoji">☕</span> Java</span>
         <span class="pill p-js"><span class="pill-emoji">🟨</span> JavaScript</span>
-        <span class="pill p-ts"><span class="pill-emoji">🟦</span> TypeScript</span>
+        <span class="pill p-ts"><span class="pill-emoji">🟦</span> ShellScript</span>
         <span class="pill p-csharp"><span class="pill-emoji">⚡</span> C#</span>
-        <span class="pill p-cpp"><span class="pill-emoji">🔧</span> C++</span>
+        <span class="pill p-cpp"><span class="pill-emoji">🔧</span> C++/C/C#</span>
         <span class="pill p-python"><span class="pill-emoji">🐍</span> Python</span>
         <span class="pill p-html"><span class="pill-emoji">🌐</span> HTML</span>
         <span class="pill p-css"><span class="pill-emoji">🎨</span> CSS</span>

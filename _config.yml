@@ -11,8 +11,8 @@ description: |
     header > img, 
     header > a > img {
       border-radius: 50% !important;
-      width: 120px !important;
-      height: 120px !important;
+      width: 240px !important;
+      height: 240px !important;
       object-fit: cover !important;
       margin-bottom: 15px !important;
       display: block !important;

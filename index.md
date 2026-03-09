@@ -170,6 +170,19 @@
   </ul>
 </div>
 
+<div class="content-card">
+  <div class="project-header">
+    <h3>🍎 Fresh Fruit E-Commerce (Front-end)</h3>
+    <a href="https://github.com/muabang123/shop_hoa_qua" class="project-link">
+      <img src="https://img.shields.io/badge/GitHub-View_Code-181717?style=flat&logo=github" alt="GitHub">
+    </a>
+  </div>
+  <p>A specialized e-commerce interface designed for a premium fresh fruit boutique. This project prioritizes a high-end visual experience with a modern, product-centric layout. Currently, it focuses on delivering a polished user interface and seamless transitions (Front-end implementation only).</p>
+  <ul>
+    <li><b>Key Highlights:</b> Fully responsive design across all devices, intuitive UI/UX optimized for product discovery, and smooth CSS animations.</li>
+    <li><b>Tech Stack:</b> HTML5, CSS3, JavaScript (Core Front-end).</li>
+  </ul>
+</div>
 ---
 
 <p align="center"><i>"Building the future, one line of code at a time."</i></p>

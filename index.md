@@ -1,13 +1,15 @@
 <style>
-  /* 1. SETUP FONT & CURSOR CƠ BẢN */
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&display=swap');
-
-  body {
-    cursor: none !important; /* Ẩn chuột mặc định */
+  /* 1. FIX LỖI CURSOR: Phủ kín toàn bộ màn hình kể cả khoảng trắng */
+  html, body {
+    cursor: none !important;
+    min-height: 100vh; /* Ép trang luôn cao ít nhất bằng màn hình */
+    margin: 0;
+    padding: 0;
   }
 
-  a, button, .content-card, .project-link {
-    cursor: none !important; /* Đảm bảo ẩn chuột trên mọi element */
+  /* Ẩn chuột trên tất cả các thành phần tương tác */
+  a, button, .content-card, .project-link, img {
+    cursor: none !important;
   }
 
   /* 2. CUSTOM CURSOR AURA */
@@ -18,7 +20,7 @@
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 10000;
     transform: translate(-50%, -50%);
   }
 
@@ -29,12 +31,11 @@
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
-    z-index: 9998;
+    z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, background-color 0.3s;
+    transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
   }
 
-  /* Hiệu ứng con trỏ khi hover */
   .cursor-hover-active {
     width: 50px !important;
     height: 50px !important;
@@ -42,7 +43,24 @@
     border-color: #b8860b !important;
   }
 
-  /* 3. PHONG CÁCH QUÝ TỘC & TYPING */
+  /* 3. FIX LỖI LOGO & BADGE (Tránh bị phóng to 898 như hình cũ) */
+  header img[src*="logo"] {
+    border-radius: 50% !important;
+    width: 120px !important;
+    height: 120px !important;
+    object-fit: cover !important;
+    display: block !important;
+    margin: 0 auto 15px auto !important;
+  }
+
+  .skill-badge, p align="center" img {
+    width: auto !important;
+    height: 20px !important; /* Độ cao chuẩn cho các Badge Shields.io */
+    border-radius: 0 !important;
+    margin: 2px !important;
+  }
+
+  /* 4. PHONG CÁCH QUÝ TỘC & TYPING */
   .aristocratic-text {
     font-family: 'Playfair Display', serif;
     font-style: italic;
@@ -60,11 +78,9 @@
     animation: blink 0.7s infinite;
   }
 
-  @keyframes blink {
-    50% { opacity: 0; }
-  }
+  @keyframes blink { 50% { opacity: 0; } }
 
-  /* 4. ANIMATION CUỘN TRANG (SCROLL REVEAL) */
+  /* 5. ANIMATION CUỘN TRANG (SCROLL REVEAL) */
   .content-card {
     border: 1px solid #e1e4e8;
     border-radius: 8px;
@@ -89,7 +105,6 @@
 
   .project-header { display: flex; justify-content: space-between; align-items: center; }
   .project-link { display: flex; align-items: center; gap: 5px; text-decoration: none; font-weight: bold; color: #0366d6; }
-  .skill-badge { margin: 2px; }
 </style>
 
 <div id="cursor-dot"></div>
@@ -117,11 +132,11 @@
 
   <h3>🛠 Core Technical Skills</h3>
   <div class="tech-stack">
-    <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" class="skill-badge" />
-    <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" class="skill-badge" />
-    <img src="https://img.shields.io/badge/SQL-CC2927?style=flat-square&logo=postgresql&logoColor=white" class="skill-badge" />
-    <img src="https://img.shields.io/badge/VS_Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white" class="skill-badge" />
-    <img src="https://img.shields.io/badge/Android_Studio-3DDC84?style=flat-square&logo=android-studio&logoColor=white" class="skill-badge" />
+    <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" />
+    <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" />
+    <img src="https://img.shields.io/badge/SQL-CC2927?style=flat-square&logo=postgresql&logoColor=white" />
+    <img src="https://img.shields.io/badge/VS_Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white" />
+    <img src="https://img.shields.io/badge/Android_Studio-3DDC84?style=flat-square&logo=android-studio&logoColor=white" />
   </div>
 </div>
 
@@ -136,10 +151,7 @@
       <img src="https://img.shields.io/badge/GitHub-View_Code-181717?style=flat&logo=github" alt="GitHub">
     </a>
   </div>
-  <p>A comprehensive real-time tracking application designed for school buses.</p>
-  <ul>
-    <li><b>Tech Stack:</b> React, Node.js, MySQL, Socket.IO, Redis.</li>
-  </ul>
+  <p>A comprehensive real-time tracking application for school buses using Node.js and Socket.IO.</p>
 </div>
 
 <div class="content-card">
@@ -149,23 +161,7 @@
       <img src="https://img.shields.io/badge/GitHub-View_Code-181717?style=flat&logo=github" alt="GitHub">
     </a>
   </div>
-  <p>A desktop-based management software for airline agencies.</p>
-  <ul>
-    <li><b>Tech Stack:</b> C# (.NET WinForms), MySQL, iTextSharp.</li>
-  </ul>
-</div>
-
-<div class="content-card">
-  <div class="project-header">
-    <h3>👟 Online Shoes Store</h3>
-    <a href="https://github.com/muabang123/Shoes_Store" class="project-link">
-      <img src="https://img.shields.io/badge/GitHub-View_Code-181717?style=flat&logo=github" alt="GitHub">
-    </a>
-  </div>
-  <p>A dynamic e-commerce web application developed to manage footwear sales.</p>
-  <ul>
-    <li><b>Tech Stack:</b> JavaScript, PHP, MySQL.</li>
-  </ul>
+  <p>A desktop-based management software for airline agencies developed with C# WinForms.</p>
 </div>
 
 ---
@@ -173,10 +169,10 @@
 <p align="center"><i>"Building the future, one line of code at a time."</i></p>
 
 <script>
-  // 1. XỬ LÝ CON TRỎ CHUỘT CUSTOM
   const dot = document.getElementById("cursor-dot");
   const outline = document.getElementById("cursor-outline");
 
+  // 1. Cập nhật vị trí chuột cho toàn bộ màn hình
   window.addEventListener("mousemove", (e) => {
     dot.style.left = e.clientX + "px";
     dot.style.top = e.clientY + "px";
@@ -184,40 +180,41 @@
     outline.animate({
       left: e.clientX + "px",
       top: e.clientY + "px"
-    }, { duration: 500, fill: "forwards" });
+    }, { duration: 400, fill: "forwards" });
   });
 
-  document.querySelectorAll('a, .content-card').forEach(el => {
+  // Hiệu ứng hover
+  document.querySelectorAll('a, .content-card, button').forEach(el => {
     el.addEventListener('mouseenter', () => outline.classList.add('cursor-hover-active'));
     el.addEventListener('mouseleave', () => outline.classList.remove('cursor-hover-active'));
   });
 
-  // 2. XỬ LÝ TYPING (ABOUT ME)
+  // 2. TYPING ANIMATION (CHỈ CHẠY 1 LẦN)
   const text = "I am a dedicated 3rd-year Software Engineering student at Saigon University (SGU) with a strong passion for building scalable and efficient applications. Currently, I am focusing on mastering both Front-end and Back-end development to become a versatile Full-stack Developer.";
   const dest = document.getElementById("typing-destination");
   const curEl = document.getElementById("typing-cursor-el");
-  let charIdx = 0;
+  let idx = 0;
 
-  function startTyping() {
-    if (charIdx < text.length) {
-      dest.innerHTML += text.charAt(charIdx);
-      charIdx++;
-      setTimeout(startTyping, 25);
+  function type() {
+    if (idx < text.length) {
+      dest.innerHTML += text.charAt(idx);
+      idx++;
+      setTimeout(type, 25);
     } else {
       curEl.style.display = "none";
     }
   }
 
-  // 3. XỬ LÝ SCROLL REVEAL
-  const obs = new IntersectionObserver((entries) => {
+  // 3. SCROLL REVEAL & TYPING TRIGGER
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-        if(entry.target.id === 'about-card') startTyping();
-        obs.unobserve(entry.target);
+        if(entry.target.id === 'about-card') type();
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.15 });
 
-  document.querySelectorAll('.content-card').forEach(c => obs.observe(c));
+  document.querySelectorAll('.content-card').forEach(c => observer.observe(c));
 </script>

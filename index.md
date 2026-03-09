@@ -51,12 +51,7 @@
         i++;
         setTimeout(typeWriter, speed);
       } else {
-        // Sau khi xong thì đợi 3s rồi reset để lặp lại
-        setTimeout(() => {
-          destination.innerHTML = "";
-          i = 0;
-          typeWriter();
-        }, stayTime);
+        cursor.style.display = "none";
       }
     }
 

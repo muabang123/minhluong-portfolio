@@ -4,21 +4,25 @@ logo: "/images/logo.jpg?raw=true"
 
 description: |
   <style>
-    /* CSS để thu nhỏ chữ và tạo thanh cuộn */
-    .portfolio-container {
-      max-height: 80vh; /* Giới hạn chiều cao là 80% màn hình */
-      overflow-y: auto; /* Hiện thanh cuộn khi nội dung quá dài */
-      font-size: 0.9em; /* Thu nhỏ chữ toàn bộ một chút */
+    /* 1. Tạo vùng cuộn riêng để không đè lên footer */
+    .sidebar-scroll {
+      max-height: 60vh; /* Giới hạn chiều cao 60% màn hình */
+      overflow-y: auto;
       padding-right: 10px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #eee;
     }
-    .about-me-text {
-      font-size: 0.85em; /* Riêng About Me sẽ nhỏ hơn nữa */
-      line-height: 1.4;
-      text-align: justify;
+    /* 2. Thu nhỏ chữ để vừa với sidebar */
+    .sidebar-scroll, .sidebar-scroll h3 {
+      font-size: 0.85em !important;
     }
-    /* Tùy chỉnh thanh cuộn cho đẹp */
-    .portfolio-container::-webkit-scrollbar { width: 5px; }
-    .portfolio-container::-webkit-scrollbar-thumb { background: #888; border-radius: 10px; }
+    /* 3. Ẩn dòng chữ "This project is maintained by" bị dính */
+    header p.view { display: none !important; }
+    header ul { display: none !important; }
+    
+    /* Tùy chỉnh thanh cuộn cho gọn */
+    .sidebar-scroll::-webkit-scrollbar { width: 4px; }
+    .sidebar-scroll::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
   </style>
 
   <div class="portfolio-container">
@@ -55,14 +59,6 @@ description: |
       <li><b>GPA:</b> <b>3.10 / 4.0</b></li>
     </ul>
 
-    <h3>🚀 Featured Projects</h3>
-    <ul>
-      <li><b>Bus Tracking System (Hệ thống tracking xe buýt)</b>
-        <ul>
-          <li><i>Technologies:</i> React, Node.js, MySQL, JavaScript</li>
-        </ul>
-      </li>
-    </ul>
 
     <h3>🛠 Tech Stack & Tools</h3>
     <p align="left">

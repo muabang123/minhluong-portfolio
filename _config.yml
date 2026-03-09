@@ -3,17 +3,79 @@ theme: jekyll-theme-minimal # Hoặc tên theme bạn đang dùng
 logo: "/images/logo.jpg?raw=true"
 
 description: |
-  <p align="center">
-    <b>Software Engineering Student @ Saigon University</b>
-  </p>
+  <style>
+    /* CSS để thu nhỏ chữ và tạo thanh cuộn */
+    .portfolio-container {
+      max-height: 80vh; /* Giới hạn chiều cao là 80% màn hình */
+      overflow-y: auto; /* Hiện thanh cuộn khi nội dung quá dài */
+      font-size: 0.9em; /* Thu nhỏ chữ toàn bộ một chút */
+      padding-right: 10px;
+    }
+    .about-me-text {
+      font-size: 0.85em; /* Riêng About Me sẽ nhỏ hơn nữa */
+      line-height: 1.4;
+      text-align: justify;
+    }
+    /* Tùy chỉnh thanh cuộn cho đẹp */
+    .portfolio-container::-webkit-scrollbar { width: 5px; }
+    .portfolio-container::-webkit-scrollbar-thumb { background: #888; border-radius: 10px; }
+  </style>
 
-  <p align="center">
-    <img src="https://img.shields.io/badge/Birthday-Dec%2026%2C%202005-orange?style=flat-square&logo=cakephp&logoColor=white">
-    <a href="tel:0898992485"><img src="https://img.shields.io/badge/Phone-0898.992.485-green?style=flat-square&logo=whatsapp"></a>
-    <a href="mailto:nguyenminhzz283@gmail.com"><img src="https://img.shields.io/badge/Email-nguyenminhzz283@gmail.com-blue?style=flat-square&logo=gmail"></a>
-  </p>
+  <div class="portfolio-container">
+    <p align="center">
+      <b>Software Engineering Student @ Saigon University</b>
+    </p>
 
-  <p align="center">
-    <a href="https://www.linkedin.com/in/l%C6%B0%C6%A1ng-minh-43ab9837a/"><img src="https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin"></a>
-    <a href="https://github.com/muabang123"><img src="https://img.shields.io/badge/GitHub-Follow-black?style=flat-square&logo=github"></a>
-  </p>
+    <p align="center">
+      <img src="https://img.shields.io/badge/Birthday-Dec%2026%2C%202005-orange?style=flat-square&logo=cakephp&logoColor=white">
+      <a href="tel:0898992485"><img src="https://img.shields.io/badge/Phone-0898.992.485-green?style=flat-square&logo=whatsapp"></a>
+      <a href="mailto:nguyenminhzz283@gmail.com"><img src="https://img.shields.io/badge/Email-nguyenminhzz283@gmail.com-blue?style=flat-square&logo=gmail"></a>
+    </p>
+
+    <p align="center">
+      <a href="https://www.linkedin.com/in/l%C6%B0%C6%A1ng-minh-43ab9837a/"><img src="https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin"></a>
+      <a href="https://github.com/muabang123"><img src="https://img.shields.io/badge/GitHub-Follow-black?style=flat-square&logo=github"></a>
+    </p>
+
+    <hr>
+
+    <div class="about-me-text">
+      <h3>👨‍💻 About Me</h3>
+      I am a dedicated **Software Engineering** student at **Saigon University** with a strong passion for building applications. Currently, I am focusing on mastering both **Front-end** and **Back-end** development to become a versatile Full-stack Developer.
+      
+      I have a solid foundation in using **GitHub, Docker, and SQL**, and I am proficient in modern development environments like **VS Code, Visual Studio, and Android Studio**.
+    </div>
+
+    <h3>🎓 Education & Personal</h3>
+    <ul>
+      <li><b>Full Name:</b> Luong Chuoc Minh</li>
+      <li><b>Date of Birth:</b> December 26, 2005</li>
+      <li><b>University:</b> Saigon University (SGU)</li>
+      <li><b>Major:</b> Software Engineering</li>
+      <li><b>GPA:</b> <b>3.10 / 4.0</b></li>
+    </ul>
+
+    <h3>🚀 Featured Projects</h3>
+    <ul>
+      <li><b>Bus Tracking System (Hệ thống tracking xe buýt)</b>
+        <ul>
+          <li><i>Technologies:</i> React, Node.js, MySQL, JavaScript</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>🛠 Tech Stack & Tools</h3>
+    <p align="left">
+      <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" />
+      <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
+      <img src="https://img.shields.io/badge/SQL-CC2927?style=for-the-badge&logo=postgresql&logoColor=white" />
+    </p>
+    <p align="left">
+      <img src="https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" />
+      <img src="https://img.shields.io/badge/Visual_Studio-5C2D91?style=for-the-badge&logo=visual-studio&logoColor=white" />
+      <img src="https://img.shields.io/badge/Android_Studio-3DDC84?style=for-the-badge&logo=android-studio&logoColor=white" />
+    </p>
+
+    <hr>
+    <p align="center"><i>"Passionate about creating impact through code."</i></p>
+  </div>

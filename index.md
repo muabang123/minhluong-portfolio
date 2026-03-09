@@ -1,5 +1,5 @@
 <style>
-  /* Import font chữ phong cách cổ điển/quý tộc */
+  /* 1. Font chữ & Hiệu ứng Typing Quý tộc */
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&display=swap');
 
   .aristocratic-text {
@@ -8,10 +8,9 @@
     font-size: 1.15rem;
     line-height: 1.6;
     color: #2c3e50;
-    min-height: 120px; /* Tránh giật khung khi xóa chữ */
+    min-height: 80px;
   }
 
-  /* Hiệu ứng con trỏ nhấp nháy */
   .cursor {
     display: inline-block;
     width: 2px;
@@ -25,39 +24,59 @@
     50% { opacity: 0; }
   }
 
-  .highlight-gold {
-    color: #b8860b; /* Màu vàng đồng quý tộc */
-    font-weight: 700;
+  /* 2. CSS cho Project Cards với hiệu ứng ẩn ban đầu */
+  .content-card {
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    background-color: #ffffff;
+    
+    /* Trạng thái ẩn để chuẩn bị animation */
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Mượt hơn ease-out */
   }
+
+  /* Trạng thái hiện ra khi cuộn đến */
+  .content-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .content-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-color: #b8860b; /* Viền vàng gold nhẹ khi hover */
+  }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .project-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #0366d6;
+  }
+
+  .skill-badge { margin: 2px; }
 </style>
 
-<div class="content-card">
+# 👋 Welcome to My Portfolio
+
+---
+
+<div class="content-card" id="about-card">
   <h2>👨‍💻 About Me</h2>
   <div class="aristocratic-text">
-    <span id="typing-destination"></span><span class="cursor">&nbsp;</span>
+    <span id="typing-destination"></span><span id="cursor-element" class="cursor">&nbsp;</span>
   </div>
-
-  <script>
-    const textToType = "I am a dedicated 3rd-year Software Engineering student at Saigon University (SGU) with a strong passion for building scalable and efficient applications. Currently, I am focusing on mastering both Front-end and Back-end development to become a versatile Full-stack Developer.";
-    const destination = document.getElementById("typing-destination");
-    
-    let i = 0;
-    const speed = 25; // Tốc độ đánh máy (ms) - Đã chỉnh nhanh để nhà tuyển dụng dễ đọc
-    const stayTime = 3000; // Thời gian dừng sau khi hoàn thành (3 giây)
-
-    function typeWriter() {
-      if (i < textToType.length) {
-        destination.innerHTML += textToType.charAt(i);
-        i++;
-        setTimeout(typeWriter, speed);
-      } else {
-        cursor.style.display = "none";
-      }
-    }
-
-    // Khởi chạy animation
-    typeWriter();
-  </script>
 
   <br>
   <h3>🎓 Education & Details</h3>
@@ -92,8 +111,8 @@
   </div>
   <p>A comprehensive real-time tracking application designed for school buses. It provides live location monitoring to ensure student safety and efficient fleet management.</p>
   <ul>
-    <li><b>Core Features:</b> Real-time GPS tracking, Socket.IO integration, and a dynamic dashboard for administrators.</li>
-    <li><b>Tech Stack:</b> React, Node.js, MySQL, Socket.IO, Redis, and Google Maps API.</li>
+    <li><b>Core Features:</b> Real-time GPS tracking, Socket.IO integration.</li>
+    <li><b>Tech Stack:</b> React, Node.js, MySQL, Socket.IO, Redis.</li>
   </ul>
 </div>
 
@@ -104,9 +123,9 @@
       <img src="https://img.shields.io/badge/GitHub-View_Code-181717?style=flat&logo=github" alt="GitHub">
     </a>
   </div>
-  <p>A desktop-based management software for airline agencies. It streamlines the ticket sales process and handles complex data management for various flight classes.</p>
+  <p>A desktop-based management software for airline agencies. It streamlines the ticket sales process and handles complex data management.</p>
   <ul>
-    <li><b>Core Features:</b> Supports multiple ticket classes (Economy, Premium, Business, First Class). Includes ticket searching, filtering, and automated PDF receipt generation using iTextSharp.</li>
+    <li><b>Core Features:</b> Multiple ticket classes, filtering, and automated PDF receipt generation.</li>
     <li><b>Tech Stack:</b> C# (.NET WinForms), MySQL, iTextSharp.</li>
   </ul>
 </div>
@@ -118,10 +137,10 @@
       <img src="https://img.shields.io/badge/GitHub-View_Code-181717?style=flat&logo=github" alt="GitHub">
     </a>
   </div>
-  <p>A dynamic e-commerce web application developed to manage footwear sales, providing a seamless shopping experience from product selection to checkout.</p>
+  <p>A dynamic e-commerce web application developed to manage footwear sales.</p>
   <ul>
-    <li><b>Core Features:</b> Responsive product catalog, integrated shopping cart system, user authentication, and administrative inventory management.</li>
-    <li><b>Tech Stack:</b> JavaScript , HTML , CSS , PHP , and MySQL.</li>
+    <li><b>Core Features:</b> Product catalog, shopping cart, user authentication.</li>
+    <li><b>Tech Stack:</b> JavaScript, HTML, CSS, PHP, MySQL.</li>
   </ul>
 </div>
 
@@ -132,9 +151,9 @@
       <img src="https://img.shields.io/badge/GitHub-View_Code-181717?style=flat&logo=github" alt="GitHub">
     </a>
   </div>
-  <p>A lightweight video streaming platform that allows users to upload, store, and play videos efficiently.</p>
+  <p>A lightweight video streaming platform that allows users to upload and play videos efficiently.</p>
   <ul>
-    <li><b>Core Features:</b> Dual-storage architecture for storing video files both on a local server and metadata in a database. User-friendly interface for browsing content.</li>
+    <li><b>Core Features:</b> Dual-storage architecture, user-friendly interface.</li>
     <li><b>Tech Stack:</b> Python, Flask, MySQL.</li>
   </ul>
 </div>
@@ -142,3 +161,46 @@
 ---
 
 <p align="center"><i>"Building the future, one line of code at a time."</i></p>
+
+<script>
+  // 1. Script cho Typing (About Me)
+  const textToType = "I am a dedicated 3rd-year Software Engineering student at Saigon University (SGU) with a strong passion for building scalable and efficient applications. Currently, I am focusing on mastering both Front-end and Back-end development to become a versatile Full-stack Developer.";
+  const destination = document.getElementById("typing-destination");
+  const cursor = document.getElementById("cursor-element");
+  let i = 0;
+
+  function typeWriter() {
+    if (i < textToType.length) {
+      destination.innerHTML += textToType.charAt(i);
+      i++;
+      setTimeout(typeWriter, 25);
+    } else {
+      cursor.style.display = "none";
+    }
+  }
+
+  // 2. Script cho Scroll Reveal (Từng dự án hiện ra khi cuộn)
+  const observerOptions = {
+    threshold: 0.15 // Hiện ra khi card lộ diện 15% diện tích
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        // Sau khi đã hiện rồi thì ngừng quan sát để tối ưu hiệu năng
+        observer.unobserve(entry.target);
+        
+        // Nếu là About Me Card thì mới chạy Typing script
+        if(entry.target.id === 'about-card') {
+           typeWriter();
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Áp dụng quan sát cho tất cả các .content-card
+  document.querySelectorAll('.content-card').forEach(card => {
+    observer.observe(card);
+  });
+</script>

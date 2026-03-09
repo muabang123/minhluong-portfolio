@@ -426,7 +426,7 @@
         <span class="pill p-mysql"><span class="pill-emoji">🐬</span> MySQL</span>
         <span class="pill p-sqlserver"><span class="pill-emoji">🔴</span> SQL Server</span>
         <span class="pill p-workbench"><span class="pill-emoji">🔧</span> MySQL Workbench</span>
-        <span class="pill p-mongo"><span class="pill-emoji">🍃</span> MongoDB</span>
+        <span class="pill p-mongo"><span class="pill-emoji">🍃</span> Xampp</span>
       </div>
     </div>
 

@@ -271,6 +271,7 @@
 </style>
 </head>
 <body>
+<iframe src="background.html" style="position:fixed;inset:0;width:100%;height:100%;border:none;z-index:-1;pointer-events:none;"></iframe>
 <div id="cursor-dot"></div>
 <div id="cursor-outline"></div>
 

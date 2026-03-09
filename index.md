@@ -110,10 +110,5 @@
 
 ---
 
-### 📈 GitHub Stats
-<p align="left">
-  <img src="https://github-readme-stats.vercel.app/api?username=muabang123&show_icons=true&theme=radical" alt="GitHub Stats" />
-</p>
-
 ---
 <p align="center"><i>"Building the future, one line of code at a time."</i></p>

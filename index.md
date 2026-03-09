@@ -12,7 +12,7 @@
     min-height: 100vh;
     margin: 0;
     font-family: sans-serif;
-    background: #f6f8fa;
+    background: transparent;
     padding: 20px;
   }
 

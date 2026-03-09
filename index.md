@@ -1,53 +1,75 @@
 <style>
-  /* CSS cho Project Cards và About Section */
-  .content-card {
-    border: 1px solid #e1e4e8;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 25px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    background-color: #ffffff;
+  /* Import font chữ phong cách cổ điển/quý tộc */
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&display=swap');
+
+  .aristocratic-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #2c3e50;
+    min-height: 120px; /* Tránh giật khung khi xóa chữ */
   }
-  .content-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+
+  /* Hiệu ứng con trỏ nhấp nháy */
+  .cursor {
+    display: inline-block;
+    width: 2px;
+    background-color: #0366d6;
+    margin-left: 3px;
+    animation: blink 0.7s infinite;
   }
-  .project-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
   }
-  .project-link {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    color: #0366d6;
-  }
-  .skill-badge {
-    margin: 2px;
+
+  .highlight-gold {
+    color: #b8860b; /* Màu vàng đồng quý tộc */
+    font-weight: 700;
   }
 </style>
 
-# 👋 Welcome to My Portfolio
-
----
-
 <div class="content-card">
   <h2>👨‍💻 About Me</h2>
-  <p>
-    I am a dedicated <b>Software Engineering</b> student at <b>Saigon University (SGU)</b> with a strong passion for building scalable and efficient applications. 
-    Currently, I am focusing on mastering both <b>Front-end</b> and <b>Back-end</b> development to become a versatile Full-stack Developer.
-  </p>
-  <p>
-    Beyond web development, I have a keen interest in <b>Game Development</b>, specifically working with <b>Unreal Engine 5</b>.
-  </p>
+  <div class="aristocratic-text">
+    <span id="typing-destination"></span><span class="cursor">&nbsp;</span>
+  </div>
 
+  <script>
+    const textToType = "I am a dedicated 3rd-year Software Engineering student at Saigon University (SGU) with a strong passion for building scalable and efficient applications. Currently, I am focusing on mastering both Front-end and Back-end development to become a versatile Full-stack Developer.";
+    const destination = document.getElementById("typing-destination");
+    
+    let i = 0;
+    const speed = 25; // Tốc độ đánh máy (ms) - Đã chỉnh nhanh để nhà tuyển dụng dễ đọc
+    const stayTime = 3000; // Thời gian dừng sau khi hoàn thành (3 giây)
+
+    function typeWriter() {
+      if (i < textToType.length) {
+        destination.innerHTML += textToType.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      } else {
+        // Sau khi xong thì đợi 3s rồi reset để lặp lại
+        setTimeout(() => {
+          destination.innerHTML = "";
+          i = 0;
+          typeWriter();
+        }, stayTime);
+      }
+    }
+
+    // Khởi chạy animation
+    typeWriter();
+  </script>
+
+  <br>
   <h3>🎓 Education & Details</h3>
   <ul>
     <li><b>University:</b> Saigon University (SGU)</li>
     <li><b>Major:</b> Software Engineering</li>
+    <li><b>Current Status:</b> 3rd-year Student</li>
     <li><b>GPA:</b> <b>3.10 / 4.0</b></li>
     <li><b>Birthday:</b> December 26, 2005</li>
   </ul>

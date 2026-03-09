@@ -4,25 +4,41 @@ logo: "/images/logo.jpg?raw=true"
 
 description: |
   <style>
-    /* 1. Fix lỗi đè chữ: Ẩn các nút mặc định của theme gây vướng */
-    header p.view, header ul { display: none !important; }
+  /* 1. Ẩn các nút mặc định của theme */
+  header p.view, header ul { display: none !important; }
 
-    /* 2. Tạo vùng cuộn linh hoạt cho Sidebar */
-    .portfolio-scroll {
-      max-height: 70vh; /* Giới hạn chiều cao 70% màn hình */
-      overflow-y: auto;
-      overflow-x: hidden;
-      padding-right: 10px;
-      font-size: 0.9em;
-      line-height: 1.5;
-    }
+  /* 2. Bo tròn Logo và chỉnh kích thước */
+  header img {
+    border-radius: 50%; /* Làm bo tròn 100% */
+    width: 120px;       /* Bạn có thể tùy chỉnh độ lớn nhỏ ở đây */
+    height: 120px;
+    object-fit: cover;  /* Đảm bảo ảnh không bị méo */
+    margin-bottom: 15px;
+  }
 
-    /* 3. Tùy chỉnh thanh cuộn nhỏ gọn */
-    .portfolio-scroll::-webkit-scrollbar { width: 4px; }
-    .portfolio-scroll::-webkit-scrollbar-thumb { background: #d0d0d0; border-radius: 10px; }
-    
-    .tech-badge { margin-bottom: 5px; }
-  </style>
+  /* 3. Chỉnh tên (h1) cho nhỏ lại và nằm trên 1 hàng */
+  header h1 {
+    font-size: 1.5em !important; /* Giảm kích thước chữ */
+    white-space: nowrap;        /* Ép chữ không được xuống hàng */
+    overflow: hidden;
+    text-overflow: ellipsis;    /* Nếu quá dài sẽ có dấu ... thay vì tràn */
+    margin-top: 10px !important;
+  }
+
+  /* 4. Vùng cuộn cho Sidebar */
+  .portfolio-scroll {
+    max-height: 65vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 10px;
+    font-size: 0.9em;
+    line-height: 1.5;
+  }
+
+  /* Thanh cuộn nhỏ gọn */
+  .portfolio-scroll::-webkit-scrollbar { width: 4px; }
+  .portfolio-scroll::-webkit-scrollbar-thumb { background: #d0d0d0; border-radius: 10px; }
+</style>
 
   <div class="portfolio-scroll">
     <p align="center">

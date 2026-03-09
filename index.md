@@ -92,6 +92,40 @@
   .project-header { display: flex; justify-content: space-between; align-items: center; }
   .project-link { display: flex; align-items: center; gap: 5px; text-decoration: none; font-weight: bold; color: #0366d6; }
   .skill-badge { margin: 2px; }
+  /* 6. STYLE CHO TECH TAGS GIỐNG ẢNH MẪU */
+  .tech-stack-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .tech-tag {
+    padding: 6px 14px;
+    border-radius: 10px; /* Bo góc giống ảnh mẫu */
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: white;
+    display: inline-block;
+    cursor: none !important; /* Giữ hiệu ứng cursor custom của bạn */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  /* Màu sắc cho từng loại Tech */
+  .ts { background-color: #3178c6; }
+  .js { background-color: #f7df1e; color: #000; } /* JavaScript thường dùng chữ đen */
+  .php { background-color: #777bb4; }
+  .css { background-color: #264de4; }
+  .html { background-color: #e34f26; }
+  .react { background-color: #61dafb; color: #000; }
+  .node { background-color: #339933; }
+  .mysql { background-color: #4479a1; }
+  .socketio { background-color: #010101; }
+  .redis { background-color: #dc382d; }
+  .csharp { background-color: #239120; }
+  .dotnet { background-color: #512bd4; }
+  .flask { background-color: #000000; }
+  .python { background-color: #3776ab; }
 </style>
 
 <div id="cursor-dot"></div>
@@ -139,9 +173,13 @@
     </a>
   </div>
   <p>A comprehensive real-time tracking application designed for school buses.</p>
-  <ul>
-    <li><b>Tech Stack:</b> React, Node.js, MySQL, Socket.IO, Redis.</li>
-  </ul>
+  <div class="tech-stack-container">
+    <span class="tech-tag react">React</span>
+    <span class="tech-tag node">Node.js</span>
+    <span class="tech-tag mysql">MySQL</span>
+    <span class="tech-tag socketio">Socket.IO</span>
+    <span class="tech-tag redis">Redis</span>
+  </div>
 </div>
 
 <div class="content-card">
@@ -152,9 +190,11 @@
     </a>
   </div>
   <p>A desktop-based management software for airline agencies.</p>
-  <ul>
-    <li><b>Tech Stack:</b> C# (.NET WinForms), MySQL, iTextSharp.</li>
-  </ul>
+  <div class="tech-stack-container">
+    <span class="tech-tag csharp">C#</span>
+    <span class="tech-tag dotnet">.NET WinForms</span>
+    <span class="tech-tag mysql">MySQL</span>
+  </div>
 </div>
 
 <div class="content-card">
@@ -165,9 +205,11 @@
     </a>
   </div>
   <p>A dynamic e-commerce web application developed to manage footwear sales.</p>
-  <ul>
-    <li><b>Tech Stack:</b> JavaScript, PHP, MySQL.</li>
-  </ul>
+  <div class="tech-stack-container">
+    <span class="tech-tag js">JavaScript</span>
+    <span class="tech-tag php">PHP</span>
+    <span class="tech-tag mysql">MySQL</span>
+  </div>
 </div>
 
 <div class="content-card">
@@ -177,11 +219,27 @@
       <img src="https://img.shields.io/badge/GitHub-View_Code-181717?style=flat&logo=github" alt="GitHub">
     </a>
   </div>
-  <p>A specialized e-commerce interface designed for a premium fresh fruit boutique. This project prioritizes a high-end visual experience with a modern, product-centric layout. Currently, it focuses on delivering a polished user interface and seamless transitions (Front-end implementation only).</p>
-  <ul>
-    <li><b>Key Highlights:</b> Fully responsive design across all devices, intuitive UI/UX optimized for product discovery, and smooth CSS animations.</li>
-    <li><b>Tech Stack:</b> HTML5, CSS3, JavaScript (Core Front-end).</li>
-  </ul>
+  <p>A specialized e-commerce interface designed for a premium fresh fruit boutique. This project prioritizes a high-end visual experience with a modern, product-centric layout. Currently, it focuses on delivering a polished user interface and seamless transitions (Front-end implementation only)..</p>
+  <div class="tech-stack-container">
+    <span class="tech-tag html">HTML5</span>
+    <span class="tech-tag css">CSS3</span>
+    <span class="tech-tag js">JavaScript</span>
+  </div>
+</div>
+
+<div class="content-card">
+  <div class="project-header">
+    <h3>📺 YouTube Lite</h3>
+    <a href="https://github.com/muabang123/Youtube_Web" class="project-link">
+      <img src="https://img.shields.io/badge/GitHub-View_Code-181717?style=flat&logo=github" alt="GitHub">
+    </a>
+  </div>
+  <p>A lightweight video streaming platform.</p>
+  <div class="tech-stack-container">
+    <span class="tech-tag python">Python</span>
+    <span class="tech-tag flask">Flask</span>
+    <span class="tech-tag mysql">MySQL</span>
+  </div>
 </div>
 ---
 

@@ -2,563 +2,167 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IT Background Animation</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap');
-
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-  :root {
-    --cyan:    #00f5ff;
-    --green:   #39ff14;
-    --magenta: #ff007f;
-    --gold:    #ffd700;
-    --purple:  #bf5fff;
-    --bg:      #020812;
-  }
 
   html, body {
     width: 100%; height: 100%;
     overflow: hidden;
-    background: var(--bg);
-    font-family: 'Fira Code', monospace;
+    background: #f0f4ff;
+    font-family: 'Courier New', monospace;
   }
 
-  /* ── CANVAS LAYERS ── */
-  canvas { position: fixed; inset: 0; }
-  #bgCanvas  { z-index: 1; }
-  #codeCanvas{ z-index: 2; opacity: 0.55; }
-
-  /* ── GRID OVERLAY ── */
-  .grid-overlay {
-    position: fixed; inset: 0; z-index: 3; pointer-events: none;
-    background-image:
-      linear-gradient(rgba(0,245,255,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,245,255,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    animation: gridPulse 6s ease-in-out infinite;
-  }
-  @keyframes gridPulse {
-    0%,100% { opacity: 0.6; }
-    50%      { opacity: 1; }
+  canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
   }
 
-  /* ── SCANLINES ── */
-  .scanlines {
-    position: fixed; inset: 0; z-index: 4; pointer-events: none;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0,0,0,0.12) 2px,
-      rgba(0,0,0,0.12) 4px
-    );
-  }
-
-  /* ── VIGNETTE ── */
-  .vignette {
-    position: fixed; inset: 0; z-index: 5; pointer-events: none;
-    background: radial-gradient(ellipse at center,
-      transparent 55%,
-      rgba(2,8,18,0.85) 100%
-    );
-  }
-
-  /* ── HUD CORNERS ── */
-  .hud-corner {
-    position: fixed; z-index: 10; width: 80px; height: 80px;
+  /* Floating code words */
+  .code-word {
+    position: fixed;
+    z-index: 2;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
     pointer-events: none;
-  }
-  .hud-corner::before, .hud-corner::after {
-    content: '';
-    position: absolute;
-    background: var(--cyan);
-    box-shadow: 0 0 10px var(--cyan);
-  }
-  .hud-corner::before { width: 100%; height: 2px; top: 0; left: 0; }
-  .hud-corner::after  { width: 2px; height: 100%; top: 0; left: 0; }
-
-  .hud-tl { top: 20px; left: 20px; }
-  .hud-tr { top: 20px; right: 20px; transform: scaleX(-1); }
-  .hud-bl { bottom: 20px; left: 20px; transform: scaleY(-1); }
-  .hud-br { bottom: 20px; right: 20px; transform: scale(-1); }
-
-  /* ── FLOATING CODE SNIPPETS ── */
-  .code-float {
-    position: fixed; z-index: 8;
-    font-family: 'Fira Code', monospace;
-    font-size: 0.78rem;
-    line-height: 1.7;
-    padding: 16px 20px;
-    border-radius: 8px;
-    border: 1px solid;
-    backdrop-filter: blur(4px);
-    pointer-events: none;
-    white-space: pre;
     opacity: 0;
-    animation: floatIn 1s ease forwards, floatDrift var(--drift,18s) ease-in-out infinite;
-  }
-  .code-float.cyan    { color: var(--cyan);    border-color: rgba(0,245,255,0.25);  background: rgba(0,245,255,0.04); }
-  .code-float.green   { color: var(--green);   border-color: rgba(57,255,20,0.25);  background: rgba(57,255,20,0.04); }
-  .code-float.magenta { color: var(--magenta); border-color: rgba(255,0,127,0.25);  background: rgba(255,0,127,0.04); }
-  .code-float.purple  { color: var(--purple);  border-color: rgba(191,95,255,0.25); background: rgba(191,95,255,0.04); }
-  .code-float.gold    { color: var(--gold);    border-color: rgba(255,215,0,0.25);  background: rgba(255,215,0,0.04); }
-
-  @keyframes floatIn {
-    from { opacity: 0; transform: translateY(20px) scale(0.95); }
-    to   { opacity: 1; transform: translateY(0)    scale(1); }
-  }
-  @keyframes floatDrift {
-    0%,100% { transform: translateY(0px); }
-    50%     { transform: translateY(-12px); }
+    animation: fadeUpWord var(--dur, 8s) ease-in-out var(--delay, 0s) infinite;
+    white-space: nowrap;
+    font-size: var(--fs, 0.85rem);
   }
 
-  /* ── TYPING TEXT LAYER ── */
-  .typing-banner {
-    position: fixed;
-    bottom: 50px; left: 50%;
-    transform: translateX(-50%);
-    z-index: 12;
-    text-align: center;
-    pointer-events: none;
+  @keyframes fadeUpWord {
+    0%   { opacity: 0;    transform: translateY(30px); }
+    15%  { opacity: 0.55; transform: translateY(0); }
+    80%  { opacity: 0.45; transform: translateY(-20px); }
+    100% { opacity: 0;    transform: translateY(-40px); }
   }
-
-  .typing-label {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 5px;
-    color: rgba(0,245,255,0.5);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-
-  .typing-line {
-    font-family: 'Fira Code', monospace;
-    font-size: 1.05rem;
-    color: var(--green);
-    text-shadow: 0 0 14px var(--green), 0 0 30px rgba(57,255,20,0.4);
-    min-height: 1.6em;
-    display: flex; align-items: center; justify-content: center; gap: 2px;
-  }
-
-  .typing-caret {
-    display: inline-block;
-    width: 10px; height: 1.1em;
-    background: var(--green);
-    box-shadow: 0 0 10px var(--green);
-    animation: caretBlink 0.8s step-end infinite;
-    margin-left: 2px;
-    vertical-align: middle;
-  }
-  @keyframes caretBlink { 50% { opacity: 0; } }
-
-  /* ── CENTER TITLE ── */
-  .center-title {
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 11;
-    text-align: center;
-    pointer-events: none;
-    animation: titlePulse 4s ease-in-out infinite;
-  }
-  .center-title h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(2rem, 5vw, 4rem);
-    font-weight: 900;
-    letter-spacing: 8px;
-    color: transparent;
-    -webkit-text-stroke: 1.5px var(--cyan);
-    text-shadow:
-      0 0 20px rgba(0,245,255,0.6),
-      0 0 60px rgba(0,245,255,0.3);
-    text-transform: uppercase;
-  }
-  .center-title p {
-    font-family: 'Fira Code', monospace;
-    font-size: 0.9rem;
-    color: rgba(0,245,255,0.55);
-    letter-spacing: 3px;
-    margin-top: 8px;
-  }
-  @keyframes titlePulse {
-    0%,100% { filter: brightness(1); }
-    50%     { filter: brightness(1.3); }
-  }
-
-  /* ── ORBIT RINGS ── */
-  .orbit-wrap {
-    position: fixed;
-    top: 50%; left: 50%;
-    z-index: 6;
-    pointer-events: none;
-  }
-  .orbit {
-    position: absolute;
-    border-radius: 50%;
-    border: 1px solid;
-    transform: translate(-50%, -50%);
-    animation: spinOrbit var(--spd,20s) linear infinite;
-  }
-  .orbit-1 {
-    width: 340px; height: 340px;
-    border-color: rgba(0,245,255,0.12);
-    --spd: 22s;
-    box-shadow: inset 0 0 30px rgba(0,245,255,0.03);
-  }
-  .orbit-2 {
-    width: 520px; height: 520px;
-    border-color: rgba(191,95,255,0.10);
-    --spd: 36s;
-    animation-direction: reverse;
-  }
-  .orbit-3 {
-    width: 720px; height: 720px;
-    border-color: rgba(255,0,127,0.07);
-    --spd: 55s;
-  }
-
-  .orbit-dot {
-    position: absolute;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    top: 50%; left: -4px;
-    transform: translateY(-50%);
-  }
-  .orbit-1 .orbit-dot { background: var(--cyan);    box-shadow: 0 0 12px var(--cyan); }
-  .orbit-2 .orbit-dot { background: var(--purple);  box-shadow: 0 0 12px var(--purple); }
-  .orbit-3 .orbit-dot { background: var(--magenta); box-shadow: 0 0 12px var(--magenta); }
-
-  @keyframes spinOrbit { to { transform: translate(-50%,-50%) rotate(360deg); } }
-
-  /* ── STATUS BAR ── */
-  .status-bar {
-    position: fixed; top: 28px; left: 50%; transform: translateX(-50%);
-    z-index: 12; display: flex; gap: 24px; align-items: center;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.6rem; letter-spacing: 3px;
-    color: rgba(0,245,255,0.45);
-    pointer-events: none;
-  }
-  .status-bar .dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--green); box-shadow: 0 0 8px var(--green);
-    animation: dotPulse 2s ease-in-out infinite;
-  }
-  @keyframes dotPulse { 50% { opacity: 0.2; transform: scale(0.6); } }
-
 </style>
 </head>
 <body>
 
-<!-- Canvases -->
-<canvas id="bgCanvas"></canvas>
-<canvas id="codeCanvas"></canvas>
-
-<!-- Overlays -->
-<div class="grid-overlay"></div>
-<div class="scanlines"></div>
-<div class="vignette"></div>
-
-<!-- HUD Corners -->
-<div class="hud-corner hud-tl"></div>
-<div class="hud-corner hud-tr"></div>
-<div class="hud-corner hud-bl"></div>
-<div class="hud-corner hud-br"></div>
-
-<!-- Orbit Rings -->
-<div class="orbit-wrap">
-  <div class="orbit orbit-1"><div class="orbit-dot"></div></div>
-  <div class="orbit orbit-2"><div class="orbit-dot"></div></div>
-  <div class="orbit orbit-3"><div class="orbit-dot"></div></div>
-</div>
-
-<!-- Center Title -->
-<div class="center-title">
-  <h1>DEV ZONE</h1>
-  <p>// SYSTEM ONLINE · BUILD 2025</p>
-</div>
-
-<!-- Floating Code Snippets (injected by JS) -->
-<div id="snippets"></div>
-
-<!-- Typing Banner -->
-<div class="typing-banner">
-  <div class="typing-label">// executing</div>
-  <div class="typing-line">
-    <span id="typed"></span><span class="typing-caret"></span>
-  </div>
-</div>
-
-<!-- Status Bar -->
-<div class="status-bar">
-  <span class="dot"></span>
-  <span>SYSTEM ACTIVE</span>
-  <span>|</span>
-  <span id="clock">00:00:00</span>
-  <span>|</span>
-  <span>ENV: PROD</span>
-</div>
+<canvas id="c"></canvas>
+<div id="words"></div>
 
 <script>
-/* ────────────────────────────────────────────
-   1. BACKGROUND CANVAS — glowing particles
-──────────────────────────────────────────── */
-const bgC  = document.getElementById('bgCanvas');
-const bgX  = bgC.getContext('2d');
-
+/* ── CANVAS: soft floating dots + connections ── */
+const canvas = document.getElementById('c');
+const ctx    = canvas.getContext('2d');
 let W, H;
-const resize = () => { W = bgC.width = window.innerWidth; H = bgC.height = window.innerHeight; };
+
+function resize() {
+  W = canvas.width  = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
 resize();
 window.addEventListener('resize', resize);
 
-const COLORS = ['#00f5ff','#39ff14','#bf5fff','#ff007f','#ffd700'];
-const particles = Array.from({length: 120}, () => ({
-  x: Math.random() * 2000,
-  y: Math.random() * 2000,
-  r: Math.random() * 2 + 0.4,
-  vx: (Math.random() - 0.5) * 0.35,
-  vy: (Math.random() - 0.5) * 0.35,
-  c: COLORS[Math.floor(Math.random() * COLORS.length)],
-  a: Math.random() * 0.7 + 0.2
+// Very few particles → light on CPU
+const DOTS = 38;
+const dots = Array.from({length: DOTS}, () => ({
+  x:  Math.random() * 1400,
+  y:  Math.random() * 900,
+  vx: (Math.random() - 0.5) * 0.3,
+  vy: (Math.random() - 0.5) * 0.3,
+  r:  Math.random() * 2.5 + 1
 }));
 
-function drawBg() {
-  bgX.clearRect(0, 0, W, H);
+// Soft blue-teal palette that suits a white page
+const PALETTE = ['#4f86c6', '#5ba4cf', '#34a0a4', '#48cae4', '#90caf9'];
 
-  // Deep radial gradient background
-  const grd = bgX.createRadialGradient(W/2, H/2, 0, W/2, H/2, Math.max(W,H)*0.8);
-  grd.addColorStop(0, '#041428');
-  grd.addColorStop(0.5, '#020c1a');
-  grd.addColorStop(1, '#020812');
-  bgX.fillStyle = grd;
-  bgX.fillRect(0, 0, W, H);
+function draw() {
+  // Soft gradient background — light sky blue → white
+  const grad = ctx.createLinearGradient(0, 0, W, H);
+  grad.addColorStop(0,   '#e8f0fe');
+  grad.addColorStop(0.5, '#f0f7ff');
+  grad.addColorStop(1,   '#e3f2fd');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
 
-  // Connection lines
-  for (let i = 0; i < particles.length; i++) {
-    for (let j = i+1; j < particles.length; j++) {
-      const dx = particles[i].x - particles[j].x;
-      const dy = particles[i].y - particles[j].y;
+  // Connection lines (only short ones)
+  for (let i = 0; i < dots.length; i++) {
+    for (let j = i + 1; j < dots.length; j++) {
+      const dx = dots[i].x - dots[j].x;
+      const dy = dots[i].y - dots[j].y;
       const d  = Math.sqrt(dx*dx + dy*dy);
-      if (d < 130) {
-        bgX.save();
-        bgX.globalAlpha = (1 - d/130) * 0.18;
-        bgX.strokeStyle = particles[i].c;
-        bgX.lineWidth = 0.6;
-        bgX.beginPath();
-        bgX.moveTo(particles[i].x, particles[i].y);
-        bgX.lineTo(particles[j].x, particles[j].y);
-        bgX.stroke();
-        bgX.restore();
+      if (d < 150) {
+        ctx.save();
+        ctx.globalAlpha = (1 - d/150) * 0.18;
+        ctx.strokeStyle = '#4f86c6';
+        ctx.lineWidth   = 1;
+        ctx.beginPath();
+        ctx.moveTo(dots[i].x, dots[i].y);
+        ctx.lineTo(dots[j].x, dots[j].y);
+        ctx.stroke();
+        ctx.restore();
       }
     }
   }
 
-  // Particles
-  particles.forEach(p => {
-    bgX.save();
-    bgX.globalAlpha = p.a;
-    const g = bgX.createRadialGradient(p.x,p.y,0, p.x,p.y,p.r*4);
-    g.addColorStop(0, p.c);
-    g.addColorStop(1, 'transparent');
-    bgX.fillStyle = g;
-    bgX.beginPath();
-    bgX.arc(p.x, p.y, p.r*4, 0, Math.PI*2);
-    bgX.fill();
-    bgX.restore();
+  // Dots
+  dots.forEach((p, i) => {
+    ctx.save();
+    ctx.globalAlpha = 0.35;
+    ctx.fillStyle   = PALETTE[i % PALETTE.length];
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
 
     p.x += p.vx; p.y += p.vy;
     if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
     if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
   });
 
-  requestAnimationFrame(drawBg);
+  requestAnimationFrame(draw);
 }
-drawBg();
+draw();
 
 
-/* ────────────────────────────────────────────
-   2. CODE RAIN CANVAS
-──────────────────────────────────────────── */
-const cC = document.getElementById('codeCanvas');
-const cX = cC.getContext('2d');
-
-cC.width = window.innerWidth;
-cC.height = window.innerHeight;
-window.addEventListener('resize', () => { cC.width = window.innerWidth; cC.height = window.innerHeight; });
-
-const FONT_SZ  = 15;
-const CHARS    = 'アイウエオカキクケコabcdefghijklmnop01{}[];=><!#@const let function return async await import export class interface type useState useEffect if else for while';
-const cols     = Math.floor(window.innerWidth / FONT_SZ);
-const drops    = Array(cols).fill(1).map(() => Math.random() * -80);
-const colColor = Array(cols).fill(0).map(() => Math.random() < 0.3 ? '#bf5fff' : '#39ff14');
-
-function drawRain() {
-  cX.fillStyle = 'rgba(2,8,18,0.12)';
-  cX.fillRect(0, 0, cC.width, cC.height);
-
-  cX.font = FONT_SZ + 'px "Fira Code"';
-
-  for (let i = 0; i < drops.length; i++) {
-    const ch   = CHARS[Math.floor(Math.random() * CHARS.length)];
-    const frac = drops[i] / (cC.height / FONT_SZ);
-
-    // Head = bright white/cyan
-    if (Math.random() > 0.6) {
-      cX.fillStyle = '#ffffff';
-      cX.shadowBlur = 12; cX.shadowColor = colColor[i];
-    } else {
-      cX.fillStyle = colColor[i];
-      cX.shadowBlur = 6; cX.shadowColor = colColor[i];
-      cX.globalAlpha = Math.max(0.15, 1 - frac);
-    }
-
-    cX.fillText(ch, i * FONT_SZ, drops[i] * FONT_SZ);
-    cX.globalAlpha = 1; cX.shadowBlur = 0;
-
-    if (drops[i] * FONT_SZ > cC.height && Math.random() > 0.975) drops[i] = 0;
-    drops[i] += 0.5;
-  }
-}
-setInterval(drawRain, 55);
-
-
-/* ────────────────────────────────────────────
-   3. FLOATING CODE SNIPPETS
-──────────────────────────────────────────── */
-const snippets = [
-  { color:'cyan', code:
-`// async fetch handler
-const getData = async (url) => {
-  const res = await fetch(url);
-  return res.json();
-};`
-  },
-  { color:'green', code:
-`# Python ML snippet
-import numpy as np
-X = np.random.rand(100, 3)
-model.fit(X, y)`
-  },
-  { color:'magenta', code:
-`/* CSS Grid magic */
-.layout {
-  display: grid;
-  grid-template-columns:
-    repeat(auto-fit, minmax(240px, 1fr));
-}`
-  },
-  { color:'purple', code:
-`// React hook
-const [state, setState] =
-  useState(null);
-
-useEffect(() => {
-  setState(fetchData());
-}, []);`
-  },
-  { color:'gold', code:
-`-- SQL query
-SELECT u.name, COUNT(o.id)
-FROM users u
-JOIN orders o ON u.id = o.user_id
-GROUP BY u.name
-HAVING COUNT(o.id) > 5;`
-  },
-  { color:'cyan', code:
-`// WebSocket handler
-socket.on('message', (data) => {
-  broadcast(JSON.stringify({
-    type: 'UPDATE', payload: data
-  }));
-});`
-  },
-  { color:'green', code:
-`# Docker compose
-services:
-  app:
-    image: node:18
-    ports: ["3000:3000"]
-  db:
-    image: mysql:8`
-  },
-  { color:'purple', code:
-`// TypeScript interface
-interface User {
-  id: number;
-  name: string;
-  role: 'admin' | 'user';
-  createdAt: Date;
-}`
-  },
+/* ── FLOATING CODE WORDS ── */
+const WORDS = [
+  { text: 'const',       color: '#1565c0' },
+  { text: 'async/await', color: '#2e7d32' },
+  { text: 'import React',color: '#1565c0' },
+  { text: '{ }',         color: '#6a1b9a' },
+  { text: 'SELECT *',    color: '#e65100' },
+  { text: 'git push',    color: '#bf360c' },
+  { text: 'npm start',   color: '#2e7d32' },
+  { text: 'useState()',  color: '#0277bd' },
+  { text: 'return <>',   color: '#1565c0' },
+  { text: 'docker run',  color: '#0288d1' },
+  { text: 'for (let i)', color: '#4527a0' },
+  { text: 'try { }',     color: '#c62828' },
+  { text: 'JOIN ON',     color: '#e65100' },
+  { text: '.then()',     color: '#2e7d32' },
+  { text: '=>',          color: '#6a1b9a' },
 ];
 
-const positions = [
-  { top:'8%',   left:'2%'  },
-  { top:'5%',   right:'2%' },
-  { top:'35%',  left:'1%'  },
-  { top:'30%',  right:'1%' },
-  { bottom:'22%',left:'2%' },
-  { bottom:'18%',right:'2%'},
-  { top:'65%',  left:'3%'  },
-  { top:'60%',  right:'3%' },
+// Spread positions across screen, avoid center (where content is)
+const POSITIONS = [
+  { left:'3%',  top:'12%' }, { left:'88%', top:'8%'  },
+  { left:'5%',  top:'40%' }, { left:'85%', top:'35%' },
+  { left:'2%',  top:'70%' }, { left:'87%', top:'65%' },
+  { left:'6%',  top:'85%' }, { left:'84%', top:'82%' },
+  { left:'20%', top:'5%'  }, { left:'70%', top:'4%'  },
+  { left:'18%', top:'92%' }, { left:'68%', top:'90%' },
+  { left:'4%',  top:'55%' }, { left:'86%', top:'50%' },
+  { left:'10%', top:'25%' },
 ];
 
-const wrap = document.getElementById('snippets');
-snippets.forEach((s, i) => {
-  const div = document.createElement('div');
-  div.className = `code-float ${s.color}`;
-  div.textContent = s.code;
-  const pos = positions[i % positions.length];
-  Object.assign(div.style, pos);
-  div.style.setProperty('--drift', (15 + i * 2.3) + 's');
-  div.style.animationDelay = (i * 0.6) + 's';
-  wrap.appendChild(div);
+const wrap = document.getElementById('words');
+WORDS.forEach((w, i) => {
+  const el = document.createElement('div');
+  el.className  = 'code-word';
+  el.textContent = w.text;
+  el.style.color = w.color;
+  el.style.setProperty('--dur',   (7 + (i % 4) * 1.5) + 's');
+  el.style.setProperty('--delay', (i * 0.9)            + 's');
+  el.style.setProperty('--fs',    (i % 3 === 0 ? '0.95rem' : '0.82rem'));
+  const pos = POSITIONS[i % POSITIONS.length];
+  Object.assign(el.style, pos);
+  wrap.appendChild(el);
 });
-
-
-/* ────────────────────────────────────────────
-   4. TYPING ANIMATION (bottom banner)
-──────────────────────────────────────────── */
-const lines = [
-  'git commit -m "feat: add real-time tracking"',
-  'npm run build && npm run deploy',
-  'SELECT * FROM dreams WHERE executed = true;',
-  'docker-compose up --build -d',
-  'console.log("Hello, World! 🌏");',
-  'const future = await buildSomethingGreat();',
-  'ssh root@192.168.1.1 -p 22',
-  'python train.py --epochs 100 --lr 0.001',
-  'kubectl apply -f deployment.yaml',
-  'git push origin main --force-with-lease',
-];
-
-const typedEl = document.getElementById('typed');
-let li = 0, ci = 0, deleting = false;
-
-function typeLoop() {
-  const full = lines[li];
-  if (!deleting) {
-    typedEl.textContent = full.slice(0, ci++);
-    if (ci > full.length) { deleting = true; setTimeout(typeLoop, 1800); return; }
-    setTimeout(typeLoop, 42);
-  } else {
-    typedEl.textContent = full.slice(0, ci--);
-    if (ci < 0) { deleting = false; li = (li+1) % lines.length; ci = 0; setTimeout(typeLoop, 400); return; }
-    setTimeout(typeLoop, 22);
-  }
-}
-typeLoop();
-
-
-/* ────────────────────────────────────────────
-   5. CLOCK
-──────────────────────────────────────────── */
-const clockEl = document.getElementById('clock');
-setInterval(() => {
-  clockEl.textContent = new Date().toTimeString().slice(0,8);
-}, 1000);
 </script>
 </body>
 </html>

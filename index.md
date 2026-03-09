@@ -96,6 +96,20 @@
 
 <div class="content-card">
   <div class="project-header">
+    <h3>👟 Online Shoes Store</h3>
+    <a href="https://github.com/muabang123/Shoes_Store" class="project-link">
+      <img src="https://img.shields.io/badge/GitHub-View_Code-181717?style=flat&logo=github" alt="GitHub">
+    </a>
+  </div>
+  <p>A dynamic e-commerce web application developed to manage footwear sales, providing a seamless shopping experience from product selection to checkout.</p>
+  <ul>
+    <li><b>Core Features:</b> Responsive product catalog, integrated shopping cart system, user authentication, and administrative inventory management.</li>
+    <li><b>Tech Stack:</b> JavaScript , HTML , CSS , PHP , and MySQL.</li>
+  </ul>
+</div>
+
+<div class="content-card">
+  <div class="project-header">
     <h3>📺 YouTube Lite</h3>
     <a href="https://github.com/muabang123/Youtube_Web" class="project-link">
       <img src="https://img.shields.io/badge/GitHub-View_Code-181717?style=flat&logo=github" alt="GitHub">
@@ -110,5 +124,4 @@
 
 ---
 
----
 <p align="center"><i>"Building the future, one line of code at a time."</i></p>

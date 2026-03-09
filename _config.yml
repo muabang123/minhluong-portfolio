@@ -4,80 +4,89 @@ logo: "/images/logo.jpg?raw=true"
 
 description: |
   <style>
-  /* 1. Ẩn các nút mặc định của theme */
-  header p.view, header ul { display: none !important; }
+    /* 1. Ẩn các nút mặc định của theme */
+    header p.view, header ul { display: none !important; }
 
-  /* 2. LOGO ANIMATION - VIỀN XOAY CYBERPUNK */
-  header > img, 
-  header > a > img {
-    border-radius: 50% !important;
-    width: 240px !important;
-    height: 240px !important;
-    object-fit: cover !important;
-    margin-bottom: 20px !important;
-    display: block !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    
-    /* Tạo khoảng hở cho viền */
-    padding: 6px; 
-    
-    /* Hiệu ứng màu gradient xoay */
-    background: linear-gradient(45deg, #00d2ff, #3a7bd5, #ff007f, #00d2ff);
-    background-size: 300% 300%;
-    
-    /* Hiệu ứng đổ bóng phát sáng (Glow) */
-    box-shadow: 0 0 15px rgba(58, 123, 213, 0.5);
-    
-    /* Kích hoạt animation */
-    animation: borderRotate 4s ease infinite, pulseGlow 2s ease-in-out infinite alternate;
-  }
+    /* 2. LOGO ANIMATION - VIỀN XOAY CYBERPUNK */
+    header > img, 
+    header > a > img {
+      border-radius: 50% !important;
+      width: 220px !important;
+      height: 220px !important;
+      object-fit: cover !important;
+      margin-bottom: 25px !important;
+      display: block !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      
+      /* Tạo khoảng hở cho viền */
+      padding: 5px; 
+      
+      /* Màu sắc viền: Xanh Cyan - Tím - Cam Neon */
+      background: linear-gradient(var(--angle, 0deg), #00f2fe, #764ba2, #ff007f, #00f2fe);
+      
+      /* Đổ bóng phát sáng đa tầng */
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.4), 
+                  0 0 30px rgba(118, 75, 162, 0.2);
+      
+      /* Chạy animation */
+      animation: rotateGradient 4s linear infinite, breathe 3s ease-in-out infinite alternate;
+    }
 
-  /* Định nghĩa hiệu ứng xoay màu viền */
-  @keyframes borderRotate {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+    /* Hiệu ứng xoay màu viền (Sử dụng CSS Variables để mượt hơn) */
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
 
-  /* Định nghĩa hiệu ứng hào quang nhịp thở */
-  @keyframes pulseGlow {
-    from { box-shadow: 0 0 10px rgba(58, 123, 213, 0.4); transform: scale(1); }
-    to { box-shadow: 0 0 25px rgba(0, 210, 255, 0.8); transform: scale(1.02); }
-  }
+    @keyframes rotateGradient {
+      to { --angle: 360deg; }
+    }
 
-  /* 3. Đảm bảo các Badge KHÔNG bị dính style trên */
-  .portfolio-scroll img {
-    border-radius: 0 !important;
-    width: auto !important;
-    height: auto !important;
-    margin-bottom: 0 !important;
-    display: inline-block !important;
-    padding: 0 !important;
-    background: none !important;
-    animation: none !important;
-    box-shadow: none !important;
-  }
+    /* Hiệu ứng nhịp thở cho Logo */
+    @keyframes breathe {
+      from { transform: scale(1); filter: brightness(1); }
+      to { transform: scale(1.03); filter: brightness(1.1); box-shadow: 0 0 25px rgba(255, 0, 127, 0.6); }
+    }
 
-  /* 4. Chỉnh tên (h1) */
-  header h1 {
-    font-size: 1.4em !important;
-    white-space: nowrap !important;
-    text-align: center !important;
-    margin-top: 10px !important;
-  }
+    /* 3. Reset style cho các Badge (quan trọng) */
+    .portfolio-scroll img {
+      border-radius: 0 !important;
+      width: auto !important;
+      height: auto !important;
+      margin: 0 !important;
+      display: inline-block !important;
+      padding: 0 !important;
+      background: none !important;
+      animation: none !important;
+      box-shadow: none !important;
+    }
 
-  /* 5. Vùng cuộn */
-  .portfolio-scroll {
-    max-height: 65vh;
-    overflow-y: auto;
-    padding-right: 5px;
-  }
-</style>
+    /* 4. Chỉnh tên (h1) */
+    header h1 {
+      font-size: 1.5em !important;
+      letter-spacing: 1px;
+      text-align: center !important;
+      margin-top: 15px !important;
+      color: #333;
+    }
+
+    /* 5. Vùng cuộn */
+    .portfolio-scroll {
+      max-height: 65vh;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    /* Custom Scrollbar cho ngầu */
+    .portfolio-scroll::-webkit-scrollbar { width: 4px; }
+    .portfolio-scroll::-webkit-scrollbar-thumb { background: #764ba2; border-radius: 10px; }
+  </style>
 
   <div class="portfolio-scroll">
-    <p align="center">
-      <b>Software Engineering Student @ Saigon University</b>
+    <p align="center" style="margin-bottom: 15px;">
+      <b style="color: #555;">Software Engineering Student @ Saigon University</b>
     </p>
 
     <p align="center">
